@@ -53,7 +53,7 @@ function buildLineChart(data) {
 				},
 				title: {
 					display: true,
-					text: 'Chart.js Line Chart'
+					text: 'Coupon Cost x Month - Chart'
 				}
 			}
 		}
@@ -73,7 +73,6 @@ function createDataset(label, data, borderColor, backgroundColor) {
 function getTotalByMonth(data) {
 	var totalByMonth = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 	$.each(data, function(i, item) {
-		//totalByMonth[item.birthday-1] += 5;
 		totalByMonth[item.birthday-1] += 1;
 	});
 	return totalByMonth

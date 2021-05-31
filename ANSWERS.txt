@@ -1,0 +1,76 @@
+1. Please write a simple function that returns whether a number is even or odd. It should return the
+string “even” or “odd”. Can you rewrite the function to a version that works without using either the
+division (/) or remainder (%) operator in the solution? 
+
+
+/**
+ * Simple function that returns whether a given number is EVEN or ODD
+ */
+public void checkEvenOdd(Integer number) {
+    if (number % 2 == 0) {
+        System.out.println("Number is EVEN");
+    } else {
+        System.out.println("Number is ODD");
+    }
+}
+
+/**
+ * Simple function that returns whether a given number is EVEN or ODD without using either the
+ * division (/) or reminder (%).
+ */
+public void checkEvenOddRestricted(Integer number) {
+    if ((number & 1) == 0) {
+        System.out.println("Number is EVEN");
+    } else {
+        System.out.println("Number is ODD");
+    }		
+}
+
+/**
+ * Simple function that returns whether a given number is EVEN or ODD without using math operators.
+ */
+public void checkEvenOddRestricted2(Integer number) {
+    Boolean isEven = true;
+    if (number > 0) {
+        for (int i = 1; i <= number; i++) {
+            isEven = !isEven;
+        }
+    } else {
+        for (int i = -1; i >= number; i--) {
+            isEven = !isEven;
+        }
+    }
+
+    System.out.println(isEven ? "Number is EVEN" : "Number is ODD");
+}
+
+#################### END QUESTION 1 ####################
+
+2. Can you explain the functional differences between StringBuilder and StringBuffer in Java in your
+own words? Imagine you are talking to a non-technical person for your answer. Please give examples
+of when you would use one over the other. 
+
+R: 
+StringBuffer is synchronised. It means two or more threads cannot call the methods of StringBuffer 
+simultaneously. 
+On the other hand, StringBuilder, is non-syncronised. It means two or more threads can call the 
+StringBuilder methods simultaneously. StringBuilder is also more efficient.
+
+To ilustrate the difference, let's create a scenario where we have two TVs and we want to access 
+their function (volume, channel, mute, power) from a remote control. We can only access the TVs 
+functions using the right remote control:
+TV1 = Remote Control 1 
+TV2 = Remote Control 2
+Similar to StringBuffer
+
+But now, lets get an universal remote control. With a universal remote control, we can access both
+TVs functions using only one remote control:
+TV1 = Univesal Remote Control 1
+TV2 = Univesal Remote Control 1
+Similar to StringBuilder
+
+EXAMPLES OF USE:
+When we need to store a text that may change and will be shared among multiple threads, it
+is better to use StringBuffer.
+When we need to store a text that may change and will be used by a single thread, it is better
+to use StringBuilder.
