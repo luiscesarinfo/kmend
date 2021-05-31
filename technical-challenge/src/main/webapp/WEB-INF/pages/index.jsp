@@ -6,41 +6,74 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<title>User Manager</title>
-		<script>
-			function myFunction() {
-			    alert("hahaha");
-			}		
-		</script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css">
+
+		<!-- jQuery -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+		<!-- Bootstrap -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+		<!-- DataTables -->
+		<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+		<script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
+
+		<!-- Chart.js -->
+		<script src="https://cdn.jsdelivr.net/npm/chart.js@3.3.1/dist/chart.min.js"></script>
+
+
+		<script src="<c:url value="/resources/js/kmend-util.js" />"></script>
+		<script src="<c:url value="/resources/js/kmend-script.js" />"></script>
 	</head>
 	<body>
-		<div align="center">
-			<h2>User Manager</h2>
-			<form method="get" action="search">
-				<input type="text" name="keyword" /> &nbsp; <input type="button" value="Search" onclick="myFunction()"/>
-			</form>
-			<h3>
-				<a href="/new">New user</a>
-			</h3>
-			<table border="1" cellpadding="5">
-				<tr>
-					<th>ID</th>
-					<th>Birthday</th>
-					<th>Spend</th>
-					<th>Region</th>
-					<th>Action</th>
-				</tr>
-				<c:forEach items="${listUser}" var="user">
+		<form method="get" action=""></form>
+		<div class="container">
+			<h2>Users Line Chart</h2>
+			<div class="container">
+				<div class="row">
+					<div class="col-sm">
+					    <label for="minimalSpend">Minimal spend</label><br />
+		    			<input type="range" id="minimalSpend" name="filterMinimalSpend" min="0" max="5000" value="0">
+					    <label id="rangeSelected"></label>					
+					</div>
+					<div class="col-sm">
+		    			<label for="regionDropdown">Select region:</label><br />
+						<select name="regions" id="regions" style="width: 150px" >
+							<option value="all">All regions</option>
+							<option value="APAC">APAC</option>
+							<option value="EUROPE">Europe</option>
+							<option value="LATIN_AMERICA">Latin America</option>
+							<option value="UNITED_STATES">United States</option>
+						</select>
+					</div>
+				</div>
+			</div>
+
+			<canvas id="usersLineChart" width="400" height="100"></canvas>
+			<br />
+			<h2>Users Table</h2>
+			<table id="usersTable" class="table table-sm table-striped" style="width:100%">
+				<thead>
 					<tr>
-						<td>${user.id}</td>
-						<td>${user.birthday}</td>
-						<td>${user.spend}</td>
-						<td>${user.region}</td>
-						<td><a href="/edit?id=${user.id}">Edit</a>
-							&nbsp;&nbsp;&nbsp; <a href="/delete?id=${user.id}">Delete</a>
-						</td>
+						<th>ID</th>
+						<th>Birthday</th>
+						<th>Spend</th>
+						<th>Region</th>
 					</tr>
-				</c:forEach>
+				</thead>
+				<tbody>
+				</tbody>
 			</table>
 		</div>
 	</body>
+	<script type="text/javascript">
+	//<![CDATA[
+		$(document).ready(function() {
+			init();
+		});
+	//]]>
+	</script>
+
 </html>
